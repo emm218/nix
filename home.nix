@@ -19,6 +19,7 @@
     (writeShellScriptBin "apply-system" ''
        sudo nixos-rebuild switch --flake "$XDG_CONFIG_HOME"/nixos#
     '')
+    fd
   ];
 
   # plain files is through 'home.file'.
@@ -34,6 +35,18 @@
     #   org.gradle.daemon.idletimeout=3600000
     # '';
   };
+
+  xdg.configFile."fd/ignore".text = ''
+music
+.cache
+share
+state
+.librewolf
+.ssh
+.gnupg
+.nix-defexpr
+*.git
+'';
 
   home.sessionVariables = {
   };
@@ -64,6 +77,29 @@
       __git_ps1 "$PROMPT_PRE"'%{%B%F{magenta}%}%~ %b%f' '%B%(?.%{%F{green}%}.%{%F{red}%})> %b%f' '(%s) '
     }
 
+    fzcd () {
+      choice=$(fd -H . "$HOME" -tdirectory | \
+          fzf --scheme=path --color=16,fg+:magenta,prompt:green,pointer:green)
+      if [ "$choice" ]; then
+        cd "$choice"
+        clear
+        precmd
+        zle reset-prompt
+      fi
+    }
+
+    zle -N fzcd
+    bindkey '^o' fzcd
+
+    autoload -U up-line-or-beginning-search
+    autoload -U down-line-or-beginning-search
+    zle -N up-line-or-beginning-search
+    zle -N down-line-or-beginning-search
+    bindkey "^[[A" up-line-or-beginning-search
+    bindkey "^[[B" down-line-or-beginning-search
+
+    bindkey -s '^f' 'fg\n'
+
     '';
   };
     
@@ -86,6 +122,8 @@
     enable = true;
     enableAliases = true;
   };
+  
+  programs.fzf.enable = true;
 
   programs.foot = {
     enable = true;

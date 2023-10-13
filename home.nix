@@ -61,6 +61,9 @@ state
     history.path = "${config.xdg.cacheHome}/zsh_history";
     syntaxHighlighting.enable = true;
     historySubstringSearch.enable = true;
+    shellAliases = {
+      psg = "ps aux | grep";
+    };
     initExtra = ''
     source ${pkgs.git}/share/bash-completion/completions/git-prompt.sh
     GIT_PS1_SHOWDIRTYSTATE=true
@@ -91,15 +94,7 @@ state
     zle -N fzcd
     bindkey '^o' fzcd
 
-    autoload -U up-line-or-beginning-search
-    autoload -U down-line-or-beginning-search
-    zle -N up-line-or-beginning-search
-    zle -N down-line-or-beginning-search
-    bindkey "^[[A" up-line-or-beginning-search
-    bindkey "^[[B" down-line-or-beginning-search
-
     bindkey -s '^f' 'fg\n'
-
     '';
   };
     

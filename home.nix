@@ -19,7 +19,6 @@
     (writeShellScriptBin "apply-system" ''
        sudo nixos-rebuild switch --flake "$XDG_CONFIG_HOME"/nixos#
     '')
-    zsh-git-prompt
   ];
 
   # plain files is through 'home.file'.
@@ -49,6 +48,23 @@
     history.path = "${config.xdg.cacheHome}/zsh_history";
     syntaxHighlighting.enable = true;
     historySubstringSearch.enable = true;
+    initExtra = ''
+    source ${pkgs.git}/share/bash-completion/completions/git-prompt.sh
+    GIT_PS1_SHOWDIRTYSTATE=true
+    GIT_PS1_SHOWSTASHSTATE=true
+    GIT_PS1_SHOWUPSTREAM="auto"
+    GIT_PS1_HIDE_IF_PWD_IGNORED=true
+    GIT_PS1_SHOWCOLORHINTS=true
+
+    if [ "$SSH_TTY" ]; then
+      PROMPT_PRE='%F{cyan}%n@%m ';
+    fi
+
+    precmd () {
+      __git_ps1 "$PROMPT_PRE"'%{%B%F{magenta}%}%~ %b%f' '%B%(?.%{%F{green}%}.%{%F{red}%})> %b%f' '(%s) '
+    }
+
+    '';
   };
     
   # Let Home Manager install and manage itself.

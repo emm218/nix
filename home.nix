@@ -1,5 +1,7 @@
 { config, pkgs, ... }:
-
+let
+git-prompt = pkgs.callPackage ./git-prompt.nix {};
+in
 {
     home.username = "anon";
     home.homeDirectory = "/home/anon";
@@ -43,7 +45,7 @@
             psg = "ps aux | grep";
         };
         initExtra = ''
-            source ${pkgs.git}/share/bash-completion/completions/git-prompt.sh
+            source ${git-prompt}/git-prompt.sh
             GIT_PS1_SHOWDIRTYSTATE=true
             GIT_PS1_SHOWSTASHSTATE=true
             GIT_PS1_SHOWUPSTREAM="auto"

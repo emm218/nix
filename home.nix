@@ -11,7 +11,8 @@ in
         (writeShellScriptBin "apply-system" ''
          sudo nixos-rebuild switch --flake "$XDG_CONFIG_HOME"/nixos#
          '')
-            fd
+        fd
+        swaybg
     ];
 
     xdg.enable = true;
@@ -75,7 +76,6 @@ in
         '';
     };
 
-# Let Home Manager install and manage itself.
     programs.home-manager.enable = true;
     programs.git = {
         enable = true;
@@ -94,6 +94,8 @@ in
         enable = true;
         enableAliases = true;
     };
+
+    programs.ripgrep.enable = true;
 
     programs.fzf.enable = true;
 

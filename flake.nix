@@ -12,9 +12,7 @@
   outputs = inputs@{ nixpkgs, home-manager, ... }: 
   let
     system = "x86_64-linux";
-    pkgs = import nixpkgs {
-      inherit system;
-    };
+    pkgs = import nixpkgs { inherit system; };
     lib = nixpkgs.lib;
   in {
     nixosConfigurations = {

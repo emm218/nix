@@ -30,7 +30,6 @@ in
 
     xdg.configFile."nvim".source = ./nvim; 
 
-
     programs.zsh = {
         enable = true;
         dotDir = ".config/zsh";
@@ -52,28 +51,28 @@ in
 
             if [ "$SSH_TTY" ]; then
                 PROMPT_PRE='%F{cyan}%n@%m ';
-        fi
+            fi
 
             precmd () {
                 __git_ps1 "$PROMPT_PRE"'%{%B%F{magenta}%}%~ %b%f' '%B%(?.%{%F{green}%}.%{%F{red}%})> %b%f' '(%s) '
             }
 
-        fzcd () {
-            choice=$(fd -H . "$HOME" -tdirectory | \
+            fzcd () {
+                choice=$(fd -H . "$HOME" -tdirectory | \
                     fzf --scheme=path --color=16,fg+:magenta,prompt:green,pointer:green)
-                   if [ "$choice" ]; then
-                       cd "$choice"
-                           clear
-                           precmd
-                           zle reset-prompt
-                           fi
-        }
+                    if [ "$choice" ]; then
+                        cd "$choice"
+                        clear
+                        precmd
+                        zle reset-prompt
+                    fi
+            }
 
-        zle -N fzcd
+            zle -N fzcd
             bindkey '^o' fzcd
 
             bindkey -s '^f' 'fg\n'
-            '';
+        '';
     };
 
 # Let Home Manager install and manage itself.
@@ -111,22 +110,22 @@ in
                 foreground = "f8f8f2";
 
                 regular0 = "21222c";  # black
-                    regular1="ff5555";  # red
-                    regular2="50fa7b";  # green
-                    regular3="f1fa8c";  # yellow
-                    regular4="bd93f9";  # blue
-                    regular5="ff79c6";  # magenta
-                    regular6="8be9fd";  # cyan
-                    regular7="f8f8f2";  # white
+                regular1="ff5555";  # red
+                regular2="50fa7b";  # green
+                regular3="f1fa8c";  # yellow
+                regular4="bd93f9";  # blue
+                regular5="ff79c6";  # magenta
+                regular6="8be9fd";  # cyan
+                regular7="f8f8f2";  # white
 
-                    bright0="6272a4";   # bright black
-                    bright1="ff6e6e";   # bright red
-                    bright2="69ff94";   # bright green
-                    bright3="ffffa5";   # bright yellow
-                    bright4="d6acff";   # bright blue
-                    bright5="ff92df";   # bright magenta
-                    bright6="a4ffff";   # bright cyan
-                    bright7="ffffff";   # bright white
+                bright0="6272a4";   # bright black
+                bright1="ff6e6e";   # bright red
+                bright2="69ff94";   # bright green
+                bright3="ffffa5";   # bright yellow
+                bright4="d6acff";   # bright blue
+                bright5="ff92df";   # bright magenta
+                bright6="a4ffff";   # bright cyan
+                bright7="ffffff";   # bright white
             };
         };
     };

@@ -14,6 +14,8 @@ in
             fd
     ];
 
+    xdg.enable = true;
+
     xdg.configFile."fd/ignore".text = ''
         music
         .cache
@@ -28,10 +30,6 @@ in
 
     xdg.configFile."nvim".source = ./nvim; 
 
-    home.sessionVariables = {
-    };
-
-    xdg.enable = true;
 
     programs.zsh = {
         enable = true;
@@ -134,4 +132,16 @@ in
     };
 
     programs.librewolf.enable = true;
+
+    xdg.userDirs = {
+        enable = true;
+        documents = "${config.home.homeDirectory}/docs";
+        desktop = "${config.home.homeDirectory}/desktop";
+        download = "${config.home.homeDirectory}/downloads";
+        music = "${config.home.homeDirectory}/music";
+        videos = "${config.home.homeDirectory}/vids";
+        pictures = "${config.home.homeDirectory}/pics";
+        publicShare = "${config.home.homeDirectory}/public";
+        templates = "${config.home.homeDirectory}/templates";
+    };
 }

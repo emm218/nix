@@ -1,0 +1,12 @@
+{
+  "Comment.nvim": { "branch": "master", "commit": "0236521ea582747b58869cb72f70ccfa967d2e89" },
+  "dracula.nvim": { "branch": "main", "commit": "9fe831e685a76e1a1898a694623b33247c4d036c" },
+  "fzf-lua": { "branch": "main", "commit": "c1de84f9c9cb227d2bef65643625f1fb8207bf8f" },
+  "lazy.nvim": { "branch": "main", "commit": "276e572f645430bcfd6fd25faa301ea9077f6ab1" },
+  "nvim-treesitter": { "branch": "master", "commit": "783e5fc3079680b307e8ac518935317907e71a59" },
+  "nvim-treesitter-textobjects": { "branch": "master", "commit": "76c7a89b41de77a4f83fb77fa072c5ad7605fe3b" },
+  "nvim-ts-context-commentstring": { "branch": "main", "commit": "92e688f013c69f90c9bbd596019ec10235bc51de" },
+  "vim-buftabline": { "branch": "master", "commit": "73b9ef5dcb6cdf6488bc88adb382f20bc3e3262a" },
+  "vim-fugitive": { "branch": "master", "commit": "cbe9dfa162c178946afa689dd3f42d4ea8bf89c1" },
+  "vim-heritage": { "branch": "main", "commit": "cffa05c78c0991c998adc4504d761b3068547db6" }
+}

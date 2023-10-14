@@ -53,6 +53,7 @@
 
     environment.systemPackages = with pkgs; [
         labwc
+        papirus-icon-theme
     ];
 
     services.xserver.displayManager.sessionPackages = with pkgs; [ labwc ];

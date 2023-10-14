@@ -15,6 +15,7 @@ require("lazy").setup({
   { import = 'user.plugins.dracula' },
   { import = 'user.plugins.treesitter' },
   { import = 'user.plugins.fzf' },
+  { import = 'user.plugins.lspconfig' },
   { 'ap/vim-buftabline' },
   { 'tpope/vim-fugitive' },
   { 'jessarcher/vim-heritage' },

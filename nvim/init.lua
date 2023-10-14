@@ -14,4 +14,4 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
-require("lazy").setup("plugins", { lockfile = vim.fn.stdpath("config") .. "/lazy-lock.json" })
+require("lazy").setup("plugins", { lockfile = vim.env.XDG_CONFIG_HOME .. "/nixos/nvim/lazy-lock.json" })

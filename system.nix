@@ -1,106 +1,106 @@
 { config, pkgs, ... }:
 
 {
-    imports =
-        [
-        ./hardware-configuration.nix
-        ];
-
-    hardware.opengl = {
-        enable = true;
-        driSupport = true;
-        driSupport32Bit = true;
-    };
-
-
-    nixpkgs.overlays = [
-        (final: prev: {
-         labwc = prev.labwc.overrideAttrs (_: rec {
-                 passthru.providedSessions = [ "labwc" ];
-                 });
-         })
+  imports =
+    [
+      ./hardware-configuration.nix
     ];
 
-    nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  hardware.opengl = {
+    enable = true;
+    driSupport = true;
+    driSupport32Bit = true;
+  };
 
-    boot.loader.systemd-boot.enable = true;
-    boot.loader.efi.canTouchEfiVariables = false;
 
-    networking.hostName = "nixos"; 
-    time.timeZone = "America/New_York";
+  nixpkgs.overlays = [
+    (final: prev: {
+      labwc = prev.labwc.overrideAttrs (_: rec {
+        passthru.providedSessions = [ "labwc" ];
+      });
+    })
+  ];
 
-    i18n.defaultLocale = "en_US.UTF-8";
+  nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
-    security.rtkit.enable = true;
-    services.pipewire = {
-        enable = true;
-        alsa.enable = true;
-        alsa.support32Bit = true;
-        pulse.enable = true;
-    };
+  boot.loader.systemd-boot.enable = true;
+  boot.loader.efi.canTouchEfiVariables = false;
 
-    users.users.anon = {
-        isNormalUser = true;
-        extraGroups = [ "wheel" ];
-        shell = pkgs.zsh;
-        openssh.authorizedKeys.keys = [
-            "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHCMaR8zi9L7xqGIDDArGb9gzREZBFdHto2UU4Pof6NL laptop"
-        ];
-        packages = with pkgs; [
-            rsync
-        ];
-    };
+  networking.hostName = "nixos";
+  time.timeZone = "America/New_York";
 
-    environment.systemPackages = with pkgs; [
-        labwc
-        papirus-icon-theme
+  i18n.defaultLocale = "en_US.UTF-8";
+
+  security.rtkit.enable = true;
+  services.pipewire = {
+    enable = true;
+    alsa.enable = true;
+    alsa.support32Bit = true;
+    pulse.enable = true;
+  };
+
+  users.users.anon = {
+    isNormalUser = true;
+    extraGroups = [ "wheel" ];
+    shell = pkgs.zsh;
+    openssh.authorizedKeys.keys = [
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHCMaR8zi9L7xqGIDDArGb9gzREZBFdHto2UU4Pof6NL laptop"
     ];
-
-    services.xserver.displayManager.sessionPackages = with pkgs; [ labwc ];
-
-    programs.regreet = {
-        enable = true;
-        settings = {
-            GTK.application_prefer_dark_theme = true;
-        };
-    };
-
-
-    fonts.packages = with pkgs; [
-        (nerdfonts.override { fonts = [ "FiraCode" ]; })
-            roboto
+    packages = with pkgs; [
+      rsync
     ];
+  };
 
-    programs.neovim = {
-        enable = true;
-        defaultEditor = true;
-        vimAlias = true;
-        viAlias = true;
+  environment.systemPackages = with pkgs; [
+    labwc
+    papirus-icon-theme
+  ];
+
+  services.xserver.displayManager.sessionPackages = with pkgs; [ labwc ];
+
+  programs.regreet = {
+    enable = true;
+    settings = {
+      GTK.application_prefer_dark_theme = true;
     };
+  };
 
-    programs.zsh.enable = true;
 
-    programs.gnupg.agent = {
-        enable = true;
-        enableSSHSupport = true;
+  fonts.packages = with pkgs; [
+    (nerdfonts.override { fonts = [ "FiraCode" ]; })
+    roboto
+  ];
+
+  programs.neovim = {
+    enable = true;
+    defaultEditor = true;
+    vimAlias = true;
+    viAlias = true;
+  };
+
+  programs.zsh.enable = true;
+
+  programs.gnupg.agent = {
+    enable = true;
+    enableSSHSupport = true;
+  };
+
+  services.openssh = {
+    enable = true;
+    settings = {
+      PasswordAuthentication = false;
+      KbdInteractiveAuthentication = false;
+      PermitRootLogin = "no";
     };
+  };
 
-    services.openssh = {
-        enable = true;
-        settings = {
-            PasswordAuthentication = false;
-            KbdInteractiveAuthentication = false;
-            PermitRootLogin = "no";
-        };
-    };
+  environment.sessionVariables = rec {
+    XDG_BIN_HOME = "$HOME/.local/bin";
+    PATH = [
+      "${XDG_BIN_HOME}"
+    ];
+  };
 
-    environment.sessionVariables = rec {
-        XDG_BIN_HOME    = "$HOME/.local/bin";
-        PATH = [ 
-            "${XDG_BIN_HOME}"
-        ];
-    };
-
-    system.stateVersion = "23.05";
+  system.stateVersion = "23.05";
 }
 

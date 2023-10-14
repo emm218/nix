@@ -1,6 +1,7 @@
 { config, pkgs, ... }:
 let
 git-prompt = pkgs.callPackage ./git-prompt.nix {};
+kaunas = pkgs.callPackage ./kaunas.nix {};
 in
 {
     home.username = "anon";
@@ -13,6 +14,7 @@ in
          '')
         fd
         swaybg
+        kaunas
     ];
 
     xdg.enable = true;

@@ -21,6 +21,7 @@
         nixos = lib.nixosSystem {
           inherit system;
           modules = [
+            ./hardware-configuration.nix
             ./system.nix
             home-manager.nixosModules.home-manager
             {

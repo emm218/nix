@@ -1,17 +1,11 @@
 { config, pkgs, ... }:
 
 {
-  imports =
-    [
-      ./hardware-configuration.nix
-    ];
-
   hardware.opengl = {
     enable = true;
     driSupport = true;
     driSupport32Bit = true;
   };
-
 
   nixpkgs.overlays = [
     (final: prev: {
@@ -69,6 +63,7 @@
   fonts.packages = with pkgs; [
     (nerdfonts.override { fonts = [ "FiraCode" ]; })
     roboto
+    noto-fonts
   ];
 
   programs.neovim = {
@@ -102,5 +97,6 @@
   };
 
   system.stateVersion = "23.05";
+
 }
 

@@ -40,9 +40,6 @@
     openssh.authorizedKeys.keys = [
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHCMaR8zi9L7xqGIDDArGb9gzREZBFdHto2UU4Pof6NL laptop"
     ];
-    packages = with pkgs; [
-      rsync
-    ];
   };
 
   environment.systemPackages = with pkgs; [

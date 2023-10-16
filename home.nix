@@ -12,6 +12,7 @@ in
     (writeShellScriptBin "apply-system" ''
       sudo nixos-rebuild switch --flake "$XDG_CONFIG_HOME"/nixos#
     '')
+    rsync
     fd
     swaybg
     audacious

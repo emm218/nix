@@ -4,6 +4,7 @@ return {
   { import = 'plugins.treesitter' },
   { import = 'plugins.fzf' },
   { import = 'plugins.lspconfig' },
+  { import = 'plugins.colorizer' },
   { 'ap/vim-buftabline' },
   { 'windwp/nvim-autopairs', config = true },
   { 'tpope/vim-fugitive' },

@@ -7,6 +7,7 @@ return {
     'JoosepAlviste/nvim-ts-context-commentstring',
     'nvim-treesitter/nvim-treesitter-textobjects',
   },
+  main = 'nvim-treesitter.configs',
   opts = {
     ensure_installed = { 'rust', 'c', 'elixir', 'nix', 'lua', 'vim', 'html', 'css' },
     highlight = {
